@@ -12,7 +12,7 @@ class CalculatorView: UIView {
     let bottomBackgroundView = UIView()
     
     let enterBillTotal = UILabel(text: "Введите общую сумму счета")
-    let sumTF = UITextField(placeholder: "123.456")
+    let billTF = UITextField(placeholder: "123.456")
     
     let selectTipLabel = UILabel(text: "Выберите чаевые")
     let zero0Button = UIButton(title: "0%", bg: .systemGreen)
@@ -20,7 +20,7 @@ class CalculatorView: UIView {
     let twenty20Button = UIButton(title: "20%", bg: .systemGreen)
     
     let chooseSplitLabel = UILabel(text: "Выберите количество людей")
-    let countSplitLabel = UILabel(text: "2")
+    let splitNumberLabel = UILabel(text: "2")
     let stepper = UIStepper()
     
     let calculateButton = UIButton(title: "Посчитать", bg: .systemGreen)
@@ -36,7 +36,7 @@ class CalculatorView: UIView {
         stepper.minimumValue = 2
         stepper.maximumValue = 10
         stepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
-        countSplitLabel.font = UIFont(name: "Gilroy-Regular", size: 35)
+        splitNumberLabel.font = UIFont(name: "Gilroy-Regular", size: 35)
 
         let tipsStack = UIStackView(arrangedSubviews: [zero0Button,
                                                        ten10Button,
@@ -45,13 +45,13 @@ class CalculatorView: UIView {
         tipsStack.spacing = 30
         tipsStack.alignment = .center
         
-        let stepperStack = UIStackView(arrangedSubviews: [countSplitLabel,
+        let stepperStack = UIStackView(arrangedSubviews: [splitNumberLabel,
                                                           stepper,])
         stepperStack.axis = .horizontal
         stepperStack.spacing = 70
         
         let stack = UIStackView(arrangedSubviews: [enterBillTotal,
-                                                   sumTF,
+                                                   billTF,
                                                    selectTipLabel,
                                                    tipsStack,
                                                    chooseSplitLabel,
@@ -70,13 +70,11 @@ class CalculatorView: UIView {
         calculateButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            ///констрейнты для верхнего фонового вида
             topBackgroundView.topAnchor.constraint(equalTo: topAnchor),
             topBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topBackgroundView.bottomAnchor.constraint(equalTo: selectTipLabel.topAnchor),
             
-            ///констрейнты для нижнего фонового вида
             bottomBackgroundView.topAnchor.constraint(equalTo: selectTipLabel.topAnchor, constant: -10),
             bottomBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -86,7 +84,7 @@ class CalculatorView: UIView {
             stack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stack.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            sumTF.widthAnchor.constraint(equalTo: stack.widthAnchor),
+            billTF.widthAnchor.constraint(equalTo: stack.widthAnchor),
             
             calculateButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
             calculateButton.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -95,7 +93,7 @@ class CalculatorView: UIView {
         ])
     }
     @objc private func stepperValueChanged() {
-        countSplitLabel.text = "\(Int(stepper.value))"
+        splitNumberLabel.text = "\(Int(stepper.value))"
     }
     
     required init?(coder: NSCoder) {

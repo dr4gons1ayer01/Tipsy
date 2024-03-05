@@ -11,8 +11,8 @@ class ResultView: UIView {
     let topBackgroundView = UIView()
     let bottomBackgroundView = UIView()
     let totalPerPersonLabel = UILabel(text: "Итого на человека")
-    let perPersonLabel = UILabel(text: "56.32")
-    let splitDestinationLabel = UILabel(text: "Разделить между 2 людьми с 10% чаевых")
+    let totalLabel = UILabel(text: "56.32")
+    let settigsLabel = UILabel(text: "Разделить между 2 людьми с 10% чаевых")
     let recalculateButton = UIButton(title: "Посчитать", bg: .systemGreen)
     
     init() {
@@ -22,18 +22,18 @@ class ResultView: UIView {
     func setupUI() {
         topBackgroundView.backgroundColor = UIColor(named: "bg")
         bottomBackgroundView.backgroundColor = .white
-        perPersonLabel.font = UIFont(name: "Gilroy-Bold", size: 40)
-        perPersonLabel.textColor = .systemGreen
-        splitDestinationLabel.numberOfLines = 0
-        splitDestinationLabel.textAlignment = .center
+        totalLabel.font = UIFont(name: "Gilroy-Bold", size: 40)
+        totalLabel.textColor = .systemGreen
+        settigsLabel.numberOfLines = 0
+        settigsLabel.textAlignment = .center
         
         let stack = UIStackView(arrangedSubviews: [totalPerPersonLabel,
-                                                   perPersonLabel,
-                                                   splitDestinationLabel,
+                                                   totalLabel,
+                                                   settigsLabel,
                                                   ])
         stack.axis = .vertical
         stack.spacing = 30
-        stack.setCustomSpacing(60, after: perPersonLabel)
+        stack.setCustomSpacing(60, after: totalLabel)
         stack.alignment = .center
         
         addSubview(topBackgroundView)
@@ -49,9 +49,9 @@ class ResultView: UIView {
             topBackgroundView.topAnchor.constraint(equalTo: topAnchor),
             topBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            topBackgroundView.bottomAnchor.constraint(equalTo: splitDestinationLabel.topAnchor),
+            topBackgroundView.bottomAnchor.constraint(equalTo: settigsLabel.topAnchor),
             
-            bottomBackgroundView.topAnchor.constraint(equalTo: splitDestinationLabel.topAnchor, constant: -10),
+            bottomBackgroundView.topAnchor.constraint(equalTo: settigsLabel.topAnchor, constant: -10),
             bottomBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomBackgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
