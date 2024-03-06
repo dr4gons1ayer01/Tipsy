@@ -11,10 +11,12 @@ class ResultView: UIView {
     let topBackgroundView = UIView()
     let bottomBackgroundView = UIView()
     let totalPerPersonLabel = UILabel(text: "Итого на человека")
-    let totalLabel = UILabel(text: "56.32")
+    let totalLabel = UILabel(text: "56.32", 
+                             textColor: .systemGreen)
     let settigsLabel = UILabel(text: "Разделить между 2 людьми с 10% чаевых")
-    let recalculateButton = UIButton(title: "Посчитать", bg: .systemGreen)
-    
+    let recalculateButton = UIButton(title: "Пересчитать", 
+                                     bg: .systemGreen,
+                                     titleColor: .white)
     init() {
         super.init(frame: CGRect())
         setupUI()
@@ -23,7 +25,6 @@ class ResultView: UIView {
         topBackgroundView.backgroundColor = UIColor(named: "bg")
         bottomBackgroundView.backgroundColor = .white
         totalLabel.font = UIFont(name: "Gilroy-Bold", size: 40)
-        totalLabel.textColor = .systemGreen
         settigsLabel.numberOfLines = 0
         settigsLabel.textAlignment = .center
         
@@ -40,6 +41,7 @@ class ResultView: UIView {
         addSubview(bottomBackgroundView)
         addSubview(stack)
         addSubview(recalculateButton)
+        
         topBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         bottomBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         stack.translatesAutoresizingMaskIntoConstraints = false

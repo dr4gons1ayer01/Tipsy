@@ -15,16 +15,19 @@ class CalculatorView: UIView {
     let billTF = UITextField(placeholder: "123.456")
     
     let selectTipLabel = UILabel(text: "Выберите чаевые")
-    let zero0Button = UIButton(title: "0%", bg: .systemGreen)
-    let ten10Button = UIButton(title: "10%", bg: .systemGreen)
-    let twenty20Button = UIButton(title: "20%", bg: .systemGreen)
-    
+    let zero0Button = UIButton(title: "0%", 
+                               bg: .clear)
+    let ten10Button = UIButton(title: "10%", 
+                               bg: .clear)
+    let twenty20Button = UIButton(title: "20%", 
+                                  bg: .clear)
     let chooseSplitLabel = UILabel(text: "Выберите количество людей")
-    let splitNumberLabel = UILabel(text: "2")
+    let splitNumberLabel = UILabel(text: "2", 
+                                   textColor: .systemGreen)
     let stepper = UIStepper()
-    
-    let calculateButton = UIButton(title: "Посчитать", bg: .systemGreen)
-    
+    let calculateButton = UIButton(title: "Посчитать", 
+                                   bg: .systemGreen,
+                                   titleColor: .white)
     init() {
         super.init(frame: CGRect())
         setupUI()
@@ -32,9 +35,9 @@ class CalculatorView: UIView {
     func setupUI() {
         topBackgroundView.backgroundColor = .white
         bottomBackgroundView.backgroundColor = UIColor(named: "bg")
-
+        
         stepper.minimumValue = 2
-        stepper.maximumValue = 10
+        stepper.maximumValue = 20
         stepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
         splitNumberLabel.font = UIFont(name: "Gilroy-Regular", size: 35)
 
@@ -64,6 +67,7 @@ class CalculatorView: UIView {
         addSubview(bottomBackgroundView)
         addSubview(stack)
         addSubview(calculateButton)
+        
         topBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         bottomBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -101,17 +105,18 @@ class CalculatorView: UIView {
     }
 }
 extension UILabel {
-    convenience init(text: String) {
+    convenience init(text: String, textColor: UIColor = .black) {
         self.init()
         self.text = text
+        self.textColor = textColor
         font = UIFont(name: "Gilroy-Regular", size: 25)
     }
 }
 extension UIButton {
-    convenience init(title: String, bg: UIColor) {
+    convenience init(title: String, bg: UIColor, titleColor: UIColor = .systemGreen) {
         self.init(type: .system)
         setTitle(title, for: .normal)
-        setTitleColor(.white, for: .normal)
+        setTitleColor(titleColor, for: .normal)
         titleLabel?.font = UIFont(name: "Gilroy-Regular", size: 25)
         backgroundColor = bg
         layer.cornerRadius = 12
